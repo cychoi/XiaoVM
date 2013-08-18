@@ -1,0 +1,3 @@
+# Compiler
+
+The compiler is written in Tcl, and depends on Tcl 8.6. The code style is considered really bad and don't follow that (ok... no one will be interested in this VM ;-).

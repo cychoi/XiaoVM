@@ -1,0 +1,48 @@
+# XiaoVM Spec
+
+## Allowed instructions
+
+* LOADSTRING
+* LOADNUMBER
+* LOADSPECIAL
+* CALL
+
+It's easy and fun to add a new function to XiaoVM.
+
+For the specific number these names represent, read processor.h.
+
+## Builtins
+
+* io::print
+
+## Namespace
+
+You may wonder what the "::" means. In fact it's nothing more than a string... There isn't built-in namespace support and thus this is a simulation.
+
+## Lifespan
+
+LOAD* will create new objects from static data on the heap, and give them the reference count 1.
+After CALL is done, reference counts of all the involved objects will automatically be decreased.
+
+## "Stack"?
+
+If you read the source you may find I used the term, "stack", in "processor.[ch]". To clarify my point, I have to say it's NOT real stack. See the examples and you'll find why. I have no better names so I simply pick up "stack" and put it there.
+
+## Limitations
+* I didn't pay attention to portability at first, so the bytecode is not portable. This is easy-to-fix because the source code is very short.
+* Valgrind reports some "definite" memory leaks.
+* The size of any number or length of strings can't be larger than sizeof(char). This is a problem in the compiler but I'm too lazy to fix it. Maybe later I will try 'long', or even 'long long'.
+
+## Advantages
+* It's an extensible framework
+* The "assemble language" consists of very simple concepts and functions
+* The source code is short and easy-to-read
+* The C API is clean and neat
+* It's strongly typed!
+* It's also very easy to extend with the C API
+
+## Disadvantages
+* The source code is short, thus the function is limited
+* Who will expect such VM?! NO ONE WOULD LIKE TO USE THIS! THUS...
+* THIS IS NOT STRONGLY MAINTAINED. IT'S JUST A TOY!
+
